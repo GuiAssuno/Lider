@@ -1,0 +1,195 @@
+{
+  "team": [
+    {
+      "severity": "critical",
+      "title": "Contestação de Dragão abaixo do ideal",
+      "detail": "Tempo médio de chegada ao objetivo: 45s após o spawn (ideal < 30s)."
+    },
+    {
+      "severity": "warning",
+      "title": "Alta taxa de throws",
+      "detail": "5 derrotas com +3.000 de ouro após os 15 min. Reforçar decisão de fechamento."
+    },
+    {
+      "severity": "info",
+      "title": "Conversão de vantagem lenta",
+      "detail": "Vitórias com vantagem aos 15 min levam 28 min em média; referência do elo: 26 min."
+    },
+    {
+      "severity": "ok",
+      "title": "Controle de visão consistente",
+      "detail": "1.7 de visão/min, acima da média do elo (1.3)."
+    }
+  ],
+  "players": [
+    {
+      "id": "p1",
+      "nick": "PlayerOne",
+      "role": "Topo",
+      "alerts": [
+        {
+          "severity": "warning",
+          "title": "Queda de farm após 15 min",
+          "detail": "CS/min cai de 7.8 para 5.9."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "nick": "PlayerTwo",
+      "role": "Selva",
+      "alerts": [
+        {
+          "severity": "warning",
+          "title": "Baixa pontuação de visão",
+          "detail": "0.8/min, 40% abaixo da média da função."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "nick": "PlayerThree",
+      "role": "Meio",
+      "alerts": [
+        {
+          "severity": "info",
+          "title": "Baixa conversão de vantagem em dano",
+          "detail": "Vantagem na rota gera apenas +4% de dano em lutas."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "nick": "PlayerFour",
+      "role": "Atirador",
+      "alerts": [
+        {
+          "severity": "ok",
+          "title": "Desempenho estável",
+          "detail": "Sem gargalos relevantes no período."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "nick": "PlayerFive",
+      "role": "Suporte",
+      "alerts": [
+        {
+          "severity": "warning",
+          "title": "Poucas trocas de ward na fase 2",
+          "detail": "Cobertura de visão cai 35% após 20 min."
+        }
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "g1",
+      "scope": "Equipe",
+      "title": "Aumentar o CS aos 15 min",
+      "current": 96,
+      "target": 105,
+      "unit": "CS",
+      "done": true
+    },
+    {
+      "id": "g2",
+      "scope": "Equipe",
+      "title": "Melhorar a sincronia de Recall",
+      "current": 58,
+      "target": 80,
+      "unit": "%",
+      "done": false
+    },
+    {
+      "id": "g3",
+      "scope": "Equipe",
+      "title": "Converter vantagem em objetivos",
+      "current": 6.1,
+      "target": 8,
+      "unit": "obj.",
+      "done": false
+    },
+    {
+      "id": "g4",
+      "scope": "PlayerOne",
+      "title": "Manter farm acima de 7 CS/min após 15 min",
+      "current": 5.9,
+      "target": 7,
+      "unit": "CS/min",
+      "done": false
+    },
+    {
+      "id": "g5",
+      "scope": "PlayerTwo",
+      "title": "Elevar visão por minuto",
+      "current": 0.8,
+      "target": 1.2,
+      "unit": "/min",
+      "done": false
+    }
+  ],
+  "evolution": [
+    {
+      "key": "csd15",
+      "label": "CS aos 15 min",
+      "unit": "",
+      "benchmark": 100,
+      "points": [
+        84,
+        86,
+        89,
+        91,
+        90,
+        94,
+        96
+      ]
+    },
+    {
+      "key": "wr",
+      "label": "Taxa de vitória",
+      "unit": "%",
+      "benchmark": 57.2,
+      "points": [
+        52,
+        54,
+        53,
+        58,
+        61,
+        63,
+        64.8
+      ]
+    },
+    {
+      "key": "vision",
+      "label": "Visão por minuto",
+      "unit": "",
+      "benchmark": 1.3,
+      "points": [
+        1.2,
+        1.3,
+        1.4,
+        1.4,
+        1.6,
+        1.6,
+        1.7
+      ]
+    },
+    {
+      "key": "throw",
+      "label": "Taxa de throw",
+      "unit": "%",
+      "benchmark": 10,
+      "points": [
+        18,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11.9
+      ]
+    }
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "members": [
+    {
+      "id": "p1",
+      "nick": "PlayerOne",
+      "role": "Topo",
+      "rank": "Ouro II",
+      "winRate": 68.4,
+      "kda": 3.9
+    },
+    {
+      "id": "p2",
+      "nick": "PlayerTwo",
+      "role": "Selva",
+      "rank": "Ouro I",
+      "winRate": 62.1,
+      "kda": 3.4
+    },
+    {
+      "id": "p3",
+      "nick": "PlayerThree",
+      "role": "Meio",
+      "rank": "Platina IV",
+      "winRate": 70.2,
+      "kda": 4.1
+    },
+    {
+      "id": "p4",
+      "nick": "PlayerFour",
+      "role": "Atirador",
+      "rank": "Ouro III",
+      "winRate": 63.7,
+      "kda": 3.6
+    },
+    {
+      "id": "p5",
+      "nick": "PlayerFive",
+      "role": "Suporte",
+      "rank": "Ouro I",
+      "winRate": 67.9,
+      "kda": 3.7
+    }
+  ],
+  "general": {
+    "season": "Temporada 2026 · Split 3",
+    "groups": [
+      {
+        "size": 5,
+        "label": "Quinteto",
+        "lineups": [
+          {
+            "members": [
+              "PlayerOne",
+              "PlayerTwo",
+              "PlayerThree",
+              "PlayerFour",
+              "PlayerFive"
+            ],
+            "games": 42,
+            "winRate": 64.3
+          }
+        ]
+      },
+      {
+        "size": 4,
+        "label": "Quarteto",
+        "lineups": [
+          {
+            "members": [
+              "PlayerOne",
+              "PlayerTwo",
+              "PlayerThree",
+              "PlayerFive"
+            ],
+            "games": 18,
+            "winRate": 61.1
+          },
+          {
+            "members": [
+              "PlayerOne",
+              "PlayerThree",
+              "PlayerFour",
+              "PlayerFive"
+            ],
+            "games": 11,
+            "winRate": 54.5
+          }
+        ]
+      },
+      {
+        "size": 3,
+        "label": "Trio",
+        "lineups": [
+          {
+            "members": [
+              "PlayerOne",
+              "PlayerTwo",
+              "PlayerThree"
+            ],
+            "games": 25,
+            "winRate": 68.0
+          },
+          {
+            "members": [
+              "PlayerThree",
+              "PlayerFour",
+              "PlayerFive"
+            ],
+            "games": 14,
+            "winRate": 57.1
+          }
+        ]
+      },
+      {
+        "size": 2,
+        "label": "Duo",
+        "lineups": [
+          {
+            "members": [
+              "PlayerOne",
+              "PlayerTwo"
+            ],
+            "games": 31,
+            "winRate": 67.7
+          },
+          {
+            "members": [
+              "PlayerFour",
+              "PlayerFive"
+            ],
+            "games": 22,
+            "winRate": 59.1
+          },
+          {
+            "members": [
+              "PlayerTwo",
+              "PlayerThree"
+            ],
+            "games": 17,
+            "winRate": 52.9
+          }
+        ]
+      }
+    ],
+    "matches": [
+      {
+        "id": "m0",
+        "date": "20/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 5,
+        "result": "Vitória",
+        "duration": "31:42",
+        "score": "24/9/61"
+      },
+      {
+        "id": "m1",
+        "date": "18/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 3,
+        "result": "Vitória",
+        "duration": "27:10",
+        "score": "31/7/78"
+      },
+      {
+        "id": "m2",
+        "date": "16/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 3,
+        "result": "Derrota",
+        "duration": "36:55",
+        "score": "14/19/33"
+      },
+      {
+        "id": "m3",
+        "date": "14/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 5,
+        "result": "Vitória",
+        "duration": "29:48",
+        "score": "27/10/66"
+      },
+      {
+        "id": "m4",
+        "date": "12/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 3,
+        "result": "Derrota",
+        "duration": "33:21",
+        "score": "18/16/44"
+      },
+      {
+        "id": "m5",
+        "date": "10/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 3,
+        "result": "Vitória",
+        "duration": "25:03",
+        "score": "29/6/72"
+      },
+      {
+        "id": "m6",
+        "date": "08/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 5,
+        "result": "Vitória",
+        "duration": "30:12",
+        "score": "22/11/58"
+      },
+      {
+        "id": "m7",
+        "date": "06/11/2026",
+        "queue": "Ranqueada Flex",
+        "members": 3,
+        "result": "Vitória",
+        "duration": "28:40",
+        "score": "26/8/64"
+      }
+    ]
+  },
+  "stats": {
+    "overview": {
+      "winRate": 64.8,
+      "winRateDelta": 4.2,
+      "objectiveControl": 71,
+      "objectiveControlDelta": 6.1,
+      "goldPerMin": 1800,
+      "goldPerMinDelta": 2.7,
+      "objectives": 7.3,
+      "objectivesDelta": 1.2,
+      "kda": 3.9,
+      "kdaDelta": 0.3,
+      "series": {
+        "winRate": [
+          55.8,
+          55.2,
+          57.8,
+          57.2,
+          59.8,
+          59.2,
+          61.8,
+          61.2,
+          63.8,
+          63.2
+        ],
+        "objectiveControl": [
+          60.88,
+          60.22,
+          63.08,
+          62.42,
+          65.28,
+          64.62,
+          67.48,
+          66.82,
+          69.68,
+          69.02
+        ],
+        "goldPerMin": [
+          1614.4,
+          1603.6,
+          1650.4,
+          1639.6,
+          1686.4,
+          1675.6,
+          1722.4,
+          1711.6,
+          1758.4,
+          1747.6
+        ],
+        "objectives": [
+          5.66,
+          5.54,
+          6.06,
+          5.94,
+          6.46,
+          6.34,
+          6.86,
+          6.74,
+          7.26,
+          7.14
+        ]
+      }
+    },
+    "radar": [
+      {
+        "label": "Objetivos",
+        "value": 78
+      },
+      {
+        "label": "Visão",
+        "value": 82
+      },
+      {
+        "label": "Dano",
+        "value": 70
+      },
+      {
+        "label": "Sobrevivência",
+        "value": 64
+      },
+      {
+        "label": "Farm",
+        "value": 55
+      }
+    ],
+    "milestones": [
+      {
+        "label": "1ª Torre",
+        "time": "11:42"
+      },
+      {
+        "label": "1º Dragão",
+        "time": "08:15"
+      },
+      {
+        "label": "Vastilarvas",
+        "time": "09:50"
+      },
+      {
+        "label": "Arauto",
+        "time": "14:20"
+      },
+      {
+        "label": "1º Barão",
+        "time": "21:05"
+      }
+    ],
+    "synergies": {
+      "best": [
+        {
+          "label": "PlayerOne + PlayerTwo",
+          "detail": "Jogadores · 38 partidas",
+          "value": 71.2
+        },
+        {
+          "label": "Vi + Ahri",
+          "detail": "Campeões · 14 partidas",
+          "value": 78.6
+        },
+        {
+          "label": "PlayerFour + PlayerFive",
+          "detail": "Jogadores · 22 partidas",
+          "value": 69.0
+        }
+      ],
+      "worst": [
+        {
+          "label": "PlayerThree + PlayerFour",
+          "detail": "Jogadores · 25 partidas",
+          "value": 48.0
+        },
+        {
+          "label": "Fiora + Lulu",
+          "detail": "Campeões · 9 partidas",
+          "value": 33.3
+        }
+      ]
+    },
+    "compositions": {
+      "best": [
+        {
+          "label": "Dive",
+          "detail": "31 partidas",
+          "value": 68.4
+        },
+        {
+          "label": "Desengaje",
+          "detail": "12 partidas",
+          "value": 63.0
+        }
+      ],
+      "worst": [
+        {
+          "label": "Split Push",
+          "detail": "13 partidas",
+          "value": 38.5
+        },
+        {
+          "label": "Poke",
+          "detail": "9 partidas",
+          "value": 44.0
+        }
+      ]
+    },
+    "champions": {
+      "best": [
+        {
+          "label": "Kai'Sa",
+          "detail": "25 partidas",
+          "value": 72.0
+        },
+        {
+          "label": "Vi",
+          "detail": "21 partidas",
+          "value": 70.1
+        },
+        {
+          "label": "Leona",
+          "detail": "18 partidas",
+          "value": 66.7
+        }
+      ],
+      "worst": [
+        {
+          "label": "Fiora",
+          "detail": "20 partidas",
+          "value": 35.0
+        },
+        {
+          "label": "Xerath",
+          "detail": "8 partidas",
+          "value": 37.5
+        }
+      ]
+    },
+    "matchups": [
+      {
+        "lane": "Topo",
+        "champion": "Camille",
+        "vs": "Fiora",
+        "winRate": 58.0,
+        "gd15": 210,
+        "csd15": 6,
+        "games": 12
+      },
+      {
+        "lane": "Selva",
+        "champion": "Vi",
+        "vs": "Lee Sin",
+        "winRate": 61.5,
+        "gd15": 340,
+        "csd15": 3,
+        "games": 13
+      },
+      {
+        "lane": "Meio",
+        "champion": "Ahri",
+        "vs": "Syndra",
+        "winRate": 47.0,
+        "gd15": -180,
+        "csd15": -5,
+        "games": 15
+      },
+      {
+        "lane": "Atirador",
+        "champion": "Kai'Sa",
+        "vs": "Jinx",
+        "winRate": 66.0,
+        "gd15": 420,
+        "csd15": 8,
+        "games": 18
+      },
+      {
+        "lane": "Suporte",
+        "champion": "Leona",
+        "vs": "Thresh",
+        "winRate": 52.0,
+        "gd15": -40,
+        "csd15": -1,
+        "games": 10
+      }
+    ],
+    "comebacks": {
+      "count": 7,
+      "detail": "Vitórias com -3.000 de ouro ou mais aos 15/20 min",
+      "champions": [
+        "Kai'Sa",
+        "Leona",
+        "Vi"
+      ]
+    },
+    "throws": {
+      "count": 5,
+      "rate": 11.9,
+      "detail": "Derrotas com +3.000 de ouro após os 15 min"
+    },
+    "closing": {
+      "avgMinutes": 28.4,
+      "referenceMinutes": 31.2,
+      "detail": "Duração média das vitórias com vantagem aos 15 min"
+    }
+  },
+  "records": [
+    {
+      "label": "Barão mais rápido",
+      "value": "19:48",
+      "detail": "vs Sombras FC · 12/10/2026",
+      "icon": "baron"
+    },
+    {
+      "label": "Maior número de abates",
+      "value": "41",
+      "detail": "vs Torre Alta · 03/11/2026",
+      "icon": "kills"
+    },
+    {
+      "label": "Melhor KDA",
+      "value": "9.8",
+      "detail": "PlayerThree · Ahri",
+      "icon": "kda"
+    },
+    {
+      "label": "Vitória mais rápida",
+      "value": "21:37",
+      "detail": "vs Nova Era · 28/10/2026",
+      "icon": "fast"
+    },
+    {
+      "label": "Torre mais rápida derrubada",
+      "value": "06:12",
+      "detail": "PlayerOne · Camille",
+      "icon": "tower"
+    },
+    {
+      "label": "Maior Killing Spree",
+      "value": "8 abates",
+      "detail": "PlayerFour · Kai'Sa",
+      "icon": "spree"
+    }
+  ],
+  "updatedAt": "15/11/2026 - 21:45"
+}

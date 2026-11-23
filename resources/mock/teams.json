@@ -1,0 +1,61 @@
+{
+  "activeTeamId": "t1",
+  "teams": [
+    {
+      "id": "t1",
+      "name": "Raven Esports",
+      "tag": "RVN",
+      "logoPath": "",
+      "members": [
+        {
+          "id": "p1",
+          "nick": "PlayerOne",
+          "tag": "BR1"
+        },
+        {
+          "id": "p2",
+          "nick": "PlayerTwo",
+          "tag": "BR1"
+        },
+        {
+          "id": "p3",
+          "nick": "PlayerThree",
+          "tag": "BR1"
+        },
+        {
+          "id": "p4",
+          "nick": "PlayerFour",
+          "tag": "BR1"
+        },
+        {
+          "id": "p5",
+          "nick": "PlayerFive",
+          "tag": "BR1"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "name": "Noite Eterna",
+      "tag": "NTE",
+      "logoPath": "",
+      "members": [
+        {
+          "id": "q1",
+          "nick": "Lunar",
+          "tag": "BR1"
+        },
+        {
+          "id": "q2",
+          "nick": "Sombra",
+          "tag": "BR1"
+        },
+        {
+          "id": "q3",
+          "nick": "Eclipse",
+          "tag": "BR1"
+        }
+      ]
+    }
+  ]
+}

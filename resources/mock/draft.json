@@ -1,0 +1,504 @@
+{
+  "patch": "25.22",
+  "champions": [
+    {
+      "id": "camille",
+      "name": "Camille",
+      "role": "Topo",
+      "tags": {
+        "dive": 7,
+        "poke": 0,
+        "disengage": 1,
+        "split": 8
+      },
+      "winRate": 58.0,
+      "delta": 1.8
+    },
+    {
+      "id": "fiora",
+      "name": "Fiora",
+      "role": "Topo",
+      "tags": {
+        "dive": 2,
+        "poke": 0,
+        "disengage": 0,
+        "split": 10
+      },
+      "winRate": 35.0,
+      "delta": -2.0
+    },
+    {
+      "id": "jax",
+      "name": "Jax",
+      "role": "Topo",
+      "tags": {
+        "dive": 5,
+        "poke": 0,
+        "disengage": 1,
+        "split": 8
+      },
+      "winRate": 54.1,
+      "delta": 0.9
+    },
+    {
+      "id": "ornn",
+      "name": "Ornn",
+      "role": "Topo",
+      "tags": {
+        "dive": 5,
+        "poke": 1,
+        "disengage": 6,
+        "split": 2
+      },
+      "winRate": 55.5,
+      "delta": 1.1
+    },
+    {
+      "id": "sejuani",
+      "name": "Sejuani",
+      "role": "Selva",
+      "tags": {
+        "dive": 8,
+        "poke": 0,
+        "disengage": 3,
+        "split": 0
+      },
+      "winRate": 57.0,
+      "delta": 1.5
+    },
+    {
+      "id": "vi",
+      "name": "Vi",
+      "role": "Selva",
+      "tags": {
+        "dive": 9,
+        "poke": 0,
+        "disengage": 1,
+        "split": 0
+      },
+      "winRate": 70.1,
+      "delta": 3.2
+    },
+    {
+      "id": "leesin",
+      "name": "Lee Sin",
+      "role": "Selva",
+      "tags": {
+        "dive": 7,
+        "poke": 1,
+        "disengage": 2,
+        "split": 1
+      },
+      "winRate": 52.0,
+      "delta": 0.2
+    },
+    {
+      "id": "viego",
+      "name": "Viego",
+      "role": "Selva",
+      "tags": {
+        "dive": 6,
+        "poke": 0,
+        "disengage": 0,
+        "split": 3
+      },
+      "winRate": 53.0,
+      "delta": 0.6
+    },
+    {
+      "id": "ahri",
+      "name": "Ahri",
+      "role": "Meio",
+      "tags": {
+        "dive": 5,
+        "poke": 3,
+        "disengage": 3,
+        "split": 1
+      },
+      "winRate": 61.0,
+      "delta": 2.4
+    },
+    {
+      "id": "syndra",
+      "name": "Syndra",
+      "role": "Meio",
+      "tags": {
+        "dive": 2,
+        "poke": 7,
+        "disengage": 1,
+        "split": 0
+      },
+      "winRate": 47.0,
+      "delta": -1.0
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "role": "Meio",
+      "tags": {
+        "dive": 7,
+        "poke": 1,
+        "disengage": 0,
+        "split": 4
+      },
+      "winRate": 50.5,
+      "delta": 0.3
+    },
+    {
+      "id": "xerath",
+      "name": "Xerath",
+      "role": "Meio",
+      "tags": {
+        "dive": 0,
+        "poke": 10,
+        "disengage": 0,
+        "split": 0
+      },
+      "winRate": 37.5,
+      "delta": -3.1
+    },
+    {
+      "id": "jinx",
+      "name": "Jinx",
+      "role": "Atirador",
+      "tags": {
+        "dive": 0,
+        "poke": 3,
+        "disengage": 1,
+        "split": 2
+      },
+      "winRate": 55.0,
+      "delta": 1.0
+    },
+    {
+      "id": "kaisa",
+      "name": "Kai'Sa",
+      "role": "Atirador",
+      "tags": {
+        "dive": 6,
+        "poke": 1,
+        "disengage": 0,
+        "split": 1
+      },
+      "winRate": 72.0,
+      "delta": 4.1
+    },
+    {
+      "id": "caitlyn",
+      "name": "Caitlyn",
+      "role": "Atirador",
+      "tags": {
+        "dive": 0,
+        "poke": 9,
+        "disengage": 2,
+        "split": 2
+      },
+      "winRate": 49.0,
+      "delta": -0.5
+    },
+    {
+      "id": "jhin",
+      "name": "Jhin",
+      "role": "Atirador",
+      "tags": {
+        "dive": 1,
+        "poke": 7,
+        "disengage": 1,
+        "split": 0
+      },
+      "winRate": 51.2,
+      "delta": 0.4
+    },
+    {
+      "id": "rell",
+      "name": "Rell",
+      "role": "Suporte",
+      "tags": {
+        "dive": 9,
+        "poke": 0,
+        "disengage": 2,
+        "split": 0
+      },
+      "winRate": 72.4,
+      "delta": 4.1
+    },
+    {
+      "id": "nautilus",
+      "name": "Nautilus",
+      "role": "Suporte",
+      "tags": {
+        "dive": 8,
+        "poke": 0,
+        "disengage": 3,
+        "split": 0
+      },
+      "winRate": 71.9,
+      "delta": 3.8
+    },
+    {
+      "id": "thresh",
+      "name": "Thresh",
+      "role": "Suporte",
+      "tags": {
+        "dive": 5,
+        "poke": 1,
+        "disengage": 6,
+        "split": 0
+      },
+      "winRate": 70.7,
+      "delta": 3.2
+    },
+    {
+      "id": "leona",
+      "name": "Leona",
+      "role": "Suporte",
+      "tags": {
+        "dive": 9,
+        "poke": 0,
+        "disengage": 1,
+        "split": 0
+      },
+      "winRate": 66.7,
+      "delta": 2.9
+    },
+    {
+      "id": "braum",
+      "name": "Braum",
+      "role": "Suporte",
+      "tags": {
+        "dive": 3,
+        "poke": 1,
+        "disengage": 8,
+        "split": 0
+      },
+      "winRate": 68.7,
+      "delta": 2.4
+    },
+    {
+      "id": "lulu",
+      "name": "Lulu",
+      "role": "Suporte",
+      "tags": {
+        "dive": 0,
+        "poke": 2,
+        "disengage": 7,
+        "split": 0
+      },
+      "winRate": 57.0,
+      "delta": 0.8
+    },
+    {
+      "id": "janna",
+      "name": "Janna",
+      "role": "Suporte",
+      "tags": {
+        "dive": 0,
+        "poke": 2,
+        "disengage": 9,
+        "split": 0
+      },
+      "winRate": 55.0,
+      "delta": 0.5
+    }
+  ],
+  "order": [
+    "B:ban:0",
+    "R:ban:0",
+    "B:ban:1",
+    "R:ban:1",
+    "B:ban:2",
+    "R:ban:2",
+    "B:pick:0",
+    "R:pick:0",
+    "R:pick:1",
+    "B:pick:1",
+    "B:pick:2",
+    "R:pick:2",
+    "R:ban:3",
+    "B:ban:3",
+    "R:ban:4",
+    "B:ban:4",
+    "R:pick:3",
+    "B:pick:3",
+    "B:pick:4",
+    "R:pick:4"
+  ],
+  "archetypes": [
+    {
+      "key": "dive",
+      "name": "Dive",
+      "description": "Engajamento direto sobre carries inimigos, com iniciações em sequência.",
+      "winCondition": "Forçar lutas curtas aproveitando vantagem de nível e visão.",
+      "games": 31,
+      "winRate": 68.4
+    },
+    {
+      "key": "poke",
+      "name": "Poke",
+      "description": "Dano a distância para desgastar o inimigo antes dos objetivos.",
+      "winCondition": "Acumular dano, tomar torres e cercar o objetivo sem lutar de frente.",
+      "games": 9,
+      "winRate": 44.0
+    },
+    {
+      "key": "disengage",
+      "name": "Desengaje",
+      "description": "Composição de proteção que anula iniciações e escala em lutas longas.",
+      "winCondition": "Aguentar a fase de rotas e vencer lutas de late game.",
+      "games": 12,
+      "winRate": 63.0
+    },
+    {
+      "key": "split",
+      "name": "Split Push",
+      "description": "Pressão lateral constante com duelistas fortes em 1x1.",
+      "winCondition": "Dividir o mapa e abrir vantagem em torres e objetivos.",
+      "games": 13,
+      "winRate": 38.5
+    }
+  ],
+  "counters": [
+    {
+      "champion": "Camille",
+      "role": "Topo",
+      "matchups": [
+        {
+          "vs": "Fiora",
+          "winRate": 58.0,
+          "gd15": 210,
+          "csd15": 6,
+          "games": 12
+        },
+        {
+          "vs": "Jax",
+          "winRate": 49.0,
+          "gd15": -60,
+          "csd15": -2,
+          "games": 12
+        },
+        {
+          "vs": "Ornn",
+          "winRate": 44.0,
+          "gd15": -150,
+          "csd15": -4,
+          "games": 12
+        },
+        {
+          "vs": "Jayce",
+          "winRate": 55.0,
+          "gd15": 120,
+          "csd15": 3,
+          "games": 12
+        }
+      ]
+    },
+    {
+      "champion": "Vi",
+      "role": "Selva",
+      "matchups": [
+        {
+          "vs": "Lee Sin",
+          "winRate": 61.5,
+          "gd15": 340,
+          "csd15": 3,
+          "games": 12
+        },
+        {
+          "vs": "Sejuani",
+          "winRate": 47.0,
+          "gd15": -80,
+          "csd15": -1,
+          "games": 12
+        },
+        {
+          "vs": "Viego",
+          "winRate": 52.0,
+          "gd15": 40,
+          "csd15": 1,
+          "games": 12
+        }
+      ]
+    },
+    {
+      "champion": "Ahri",
+      "role": "Meio",
+      "matchups": [
+        {
+          "vs": "Syndra",
+          "winRate": 47.0,
+          "gd15": -180,
+          "csd15": -5,
+          "games": 12
+        },
+        {
+          "vs": "Zed",
+          "winRate": 56.0,
+          "gd15": 90,
+          "csd15": 2,
+          "games": 12
+        },
+        {
+          "vs": "Xerath",
+          "winRate": 63.0,
+          "gd15": 260,
+          "csd15": 7,
+          "games": 12
+        }
+      ]
+    },
+    {
+      "champion": "Kai'Sa",
+      "role": "Atirador",
+      "matchups": [
+        {
+          "vs": "Jinx",
+          "winRate": 66.0,
+          "gd15": 420,
+          "csd15": 8,
+          "games": 12
+        },
+        {
+          "vs": "Caitlyn",
+          "winRate": 43.0,
+          "gd15": -310,
+          "csd15": -9,
+          "games": 12
+        },
+        {
+          "vs": "Jhin",
+          "winRate": 54.0,
+          "gd15": 60,
+          "csd15": 2,
+          "games": 12
+        }
+      ]
+    },
+    {
+      "champion": "Leona",
+      "role": "Suporte",
+      "matchups": [
+        {
+          "vs": "Thresh",
+          "winRate": 52.0,
+          "gd15": -40,
+          "csd15": -1,
+          "games": 12
+        },
+        {
+          "vs": "Braum",
+          "winRate": 41.0,
+          "gd15": -220,
+          "csd15": -3,
+          "games": 12
+        },
+        {
+          "vs": "Lulu",
+          "winRate": 59.0,
+          "gd15": 150,
+          "csd15": 2,
+          "games": 12
+        }
+      ]
+    }
+  ]
+}
