@@ -20,6 +20,40 @@ Item {
         anchors.margins: 24
         spacing: 18
 
+        // ---- Conteúdo ----
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            spacing: 14
+
+            TeamHeader {
+                updatedAt: Analysis.data.updatedAt || ""
+                onRefresh: Analysis.reload()
+            }
+
+            // Jogador aberto => tela individual; senão => subguias do time
+            Loader {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                active: Analysis.playerOpen
+                visible: active
+                source: "analysis/PlayerDetail.qml"
+            }
+            ColumnLayout {
+                visible: !Analysis.playerOpen
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                spacing: 14
+                NeonTabBar { model: ["Geral", "Estatísticas", "Recordes"]; currentIndex: root.tab; onActivated: i => root.tab = i }
+                Loader {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    active: Analysis.data.stats !== undefined
+                    source: root.tabFiles[root.tab]
+                }
+            }
+        }
+        
         // ---- Elenco (RF-A02) — clique abre o perfil individual (RF-A03) ----
         NeonCard {
             Layout.preferredWidth: root.width < 1100 ? 220 : 270
@@ -57,40 +91,6 @@ Item {
                         }
                     }
                     MouseArea { id: ma; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: Analysis.openPlayer(mrow.modelData.id) }
-                }
-            }
-        }
-
-        // ---- Conteúdo ----
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            spacing: 14
-
-            TeamHeader {
-                updatedAt: Analysis.data.updatedAt || ""
-                onRefresh: Analysis.reload()
-            }
-
-            // Jogador aberto => tela individual; senão => subguias do time
-            Loader {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                active: Analysis.playerOpen
-                visible: active
-                source: "analysis/PlayerDetail.qml"
-            }
-            ColumnLayout {
-                visible: !Analysis.playerOpen
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                spacing: 14
-                NeonTabBar { model: ["Geral", "Estatísticas", "Recordes"]; currentIndex: root.tab; onActivated: i => root.tab = i }
-                Loader {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    active: Analysis.data.stats !== undefined
-                    source: root.tabFiles[root.tab]
                 }
             }
         }
