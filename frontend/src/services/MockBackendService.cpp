@@ -60,10 +60,36 @@ void MockBackendService::loginWithCredentials(const QString &email, const QStrin
     reply(Endpoint::Login, {{"profile", m_profile}, {"needsLink", firstAccess}}, 450);
 }
 
+void MockBackendService::registerWithCredentials(const QString &email, const QString &password)
+{
+    if (!email.contains('@')) {
+        fail(Endpoint::Register, tr("Informe um e-mail válido."));
+        return;
+    }
+    if (password.size() < 8) {
+        fail(Endpoint::Register, tr("A senha deve ter pelo menos 8 caracteres."));
+        return;
+    }
+    m_profile = QVariantMap{{"email", email}};
+    reply(Endpoint::Register, {{"profile", m_profile}, {"needsLink", true}}, 450);
+}
+
 void MockBackendService::loginWithRiot()
 {
     m_profile = buildProfile("Nicktag", "BR1", "BR");
     reply(Endpoint::Login, {{"profile", m_profile}, {"needsLink", false}}, 600);
+}
+
+void MockBackendService::restoreSession()
+{
+    // Modo mock nao persiste sessao entre execucoes (mensagem vazia = silencioso).
+    fail(Endpoint::Me, QString(), 0);
+}
+
+void MockBackendService::logoutSession()
+{
+    m_profile.clear();
+    reply(Endpoint::Logout, {}, 0);
 }
 
 void MockBackendService::linkRiotAccount(const QString &nick, const QString &tag, const QString &region)
@@ -75,7 +101,7 @@ void MockBackendService::linkRiotAccount(const QString &nick, const QString &tag
     const QString email = m_profile.value("email").toString();
     m_profile = buildProfile(nick.trimmed(), tag.trimmed(), region);
     m_profile["email"] = email;
-    reply(Endpoint::LinkAccount, {{"profile", m_profile}}, 400);
+    reply(Endpoint::LinkAccount, {{"profile", m_profile}, {"needsLink", false}}, 400);
 }
 
 // ----------------------------------------------------------------- Times ----
@@ -116,6 +142,12 @@ void MockBackendService::deleteTeam(const QString &teamId)
     if (m_activeTeamId == teamId)
         m_activeTeamId = m_teams.isEmpty() ? QString() : m_teams.first().toMap().value("id").toString();
     reply(Endpoint::DeleteTeam, {{"teamId", teamId}}, 250);
+}
+
+void MockBackendService::setActiveTeam(const QString &teamId)
+{
+    m_activeTeamId = teamId;
+    reply(Endpoint::ActiveTeam, {{"activeTeamId", m_activeTeamId}}, 80);
 }
 
 // -------------------------------------------------------------- Análise -----

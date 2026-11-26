@@ -9,18 +9,24 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Network)
 
 # ----------------------------------------------------------------------------
 #  Código C++ — separado em camadas (ver docs/ARQUITETURA.md)
 #    core/        contratos (interfaces) que o backend/LCU reais devem cumprir
-#    services/    implementações (hoje: MOCK) dos contratos
+#    services/    implementações (HTTP real, roteador, cofre de tokens e MOCK)
 #    viewmodels/  controllers expostos ao QML
 # ----------------------------------------------------------------------------
 qt_add_executable(lider
     src/main.cpp
     src/core/IBackendService.h
     src/core/ILcuBridge.h
+    src/services/TokenStore.h
+    src/services/TokenStore.cpp
+    src/services/HttpBackendService.h
+    src/services/HttpBackendService.cpp
+    src/services/RoutedBackendService.h
+    src/services/RoutedBackendService.cpp
     src/services/MockBackendService.h
     src/services/MockBackendService.cpp
     src/services/MockLcuBridge.h
@@ -120,7 +126,10 @@ qt_add_qml_module(lider
         qml/pages/TrainingGoalsPage.qml
 )
 
-target_link_libraries(lider PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::QuickControls2)
+target_link_libraries(lider PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::Network)
+if (WIN32)
+    target_link_libraries(lider PRIVATE Advapi32)
+endif()
 
 # Aplicação gráfica (sem console no Windows)
 set_target_properties(lider PROPERTIES WIN32_EXECUTABLE TRUE MACOSX_BUNDLE TRUE)

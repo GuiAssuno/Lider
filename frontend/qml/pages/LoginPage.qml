@@ -38,7 +38,9 @@ Item {
                 Layout.fillWidth: true
                 text: App.loading ? "Aguarde…" : (root.registerMode ? "Cadastrar" : "Entrar")
                 enabled: !App.loading
-                onClicked: App.login(email.text, pass.text)
+                onClicked: root.registerMode
+                           ? App.registerAccount(email.text, pass.text)
+                           : App.login(email.text, pass.text)
             }
             NeonButton { Layout.fillWidth: true; variant: "ghost"; text: "Entrar com Riot (RSO)"; glyph: Icons.glyph("counters"); enabled: !App.loading; onClicked: App.loginWithRiot() }
             Text {
@@ -49,7 +51,7 @@ Item {
             }
             Text {
                 Layout.alignment: Qt.AlignHCenter
-                text: "Dica (mock): use qualquer e-mail válido e senha com 4+ caracteres.\nE-mails contendo “novo” simulam o primeiro acesso."
+                text: "Use um e-mail válido e senha com 8+ caracteres.\nSem LIDER_API_URL, o app roda em modo demonstração (mock)."
                 color: Theme.textMuted; font.pixelSize: Theme.fontXs; horizontalAlignment: Text.AlignHCenter
             }
         }

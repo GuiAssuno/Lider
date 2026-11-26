@@ -18,11 +18,15 @@ public:
     explicit MockBackendService(QObject *parent = nullptr);
 
     void loginWithCredentials(const QString &email, const QString &password) override;
+    void registerWithCredentials(const QString &email, const QString &password) override;
     void loginWithRiot() override;
+    void restoreSession() override;
+    void logoutSession() override;
     void linkRiotAccount(const QString &nick, const QString &tag, const QString &region) override;
     void fetchTeams() override;
     void saveTeam(const QVariantMap &team) override;
     void deleteTeam(const QString &teamId) override;
+    void setActiveTeam(const QString &teamId) override;
     void fetchTeamAnalysis(const QString &teamId) override;
     void fetchPlayerStats(const QString &teamId, const QString &playerId) override;
     void fetchDraftCatalog() override;

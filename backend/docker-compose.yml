@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lider-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: lider
+      POSTGRES_PASSWORD: lider
+      POSTGRES_DB: lider
+    ports:
+      - "5432:5432"
+    volumes:
+      - lider_pgdata:/var/lib/postgresql/data
+      - ./scripts/init-test-db.sql:/docker-entrypoint-initdb.d/01-init-test-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lider -d lider"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  lider_pgdata:

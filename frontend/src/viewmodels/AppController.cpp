@@ -8,6 +8,7 @@ AppController::AppController(IBackendService *backend, ILcuBridge *lcu, QObject 
 {
     connect(backend, &IBackendService::responseReady, this, &AppController::onResponse);
     connect(backend, &IBackendService::requestFailed, this, &AppController::onFailure);
+    connect(backend, &IBackendService::sessionExpired, this, &AppController::onSessionExpired);
 
     // Estado da ponte LCU -> UI (RF-L11)
     connect(lcu, &ILcuBridge::stateChanged, this, &AppController::lcuStateChanged);
@@ -46,10 +47,26 @@ void AppController::login(const QString &email, const QString &password)
     backend()->loginWithCredentials(email.trimmed(), password);
 }
 
+void AppController::registerAccount(const QString &email, const QString &password)
+{
+    setError({}); setLoading(true);
+    backend()->registerWithCredentials(email.trimmed(), password);
+}
+
 void AppController::loginWithRiot()
 {
     setError({}); setLoading(true);
     backend()->loginWithRiot();
+}
+
+void AppController::restoreSession()
+{
+    if (m_restoringSession || m_authenticated) return;
+    m_restoringSession = true;
+    emit restoringSessionChanged();
+    setError({});
+    setLoading(true);
+    backend()->restoreSession();
 }
 
 void AppController::linkAccount(const QString &nick, const QString &tag, const QString &region)
@@ -60,10 +77,38 @@ void AppController::linkAccount(const QString &nick, const QString &tag, const Q
 
 void AppController::logout()
 {
+    backend()->logoutSession();
+    clearSessionLocal();
+}
+
+void AppController::clearSessionLocal()
+{
     m_lcu->stop();
-    m_authenticated = false; m_needsLink = false; m_profile.clear(); m_teams.clear(); m_activeTeamId.clear();
-    emit authenticatedChanged(); emit needsAccountLinkChanged(); emit profileChanged();
-    emit teamsChanged(); emit activeTeamChanging({}); emit activeTeamIdChanged();
+    if (m_restoringSession) {
+        m_restoringSession = false;
+        emit restoringSessionChanged();
+    }
+    setLoading(false);
+    m_authenticated = false;
+    m_needsLink = false;
+    m_profile.clear();
+    m_teams.clear();
+    m_activeTeamId.clear();
+    QSettings().remove("session/activeTeamId");
+    emit authenticatedChanged();
+    emit needsAccountLinkChanged();
+    emit profileChanged();
+    emit teamsChanged();
+    emit activeTeamChanging({});
+    emit activeTeamIdChanged();
+}
+
+void AppController::onSessionExpired(const QString &message)
+{
+    clearSessionLocal();
+    const QString msg = message.isEmpty() ? tr("Sessão expirada. Faça login novamente.") : message;
+    setError(msg);
+    emit toast(msg);
 }
 
 void AppController::navigate(const QString &route)
@@ -79,6 +124,7 @@ void AppController::refreshTeams() { backend()->fetchTeams(); }
 QString AppController::validateLogo(const QUrl &fileUrl) const
 {
     if (!fileUrl.isValid() || fileUrl.isEmpty()) return {};
+    if (!fileUrl.isLocalFile()) return {};
     const QFileInfo fi(fileUrl.toLocalFile());
     const QString ext = fi.suffix().toLower();
     if (!QStringList{"png", "jpg", "jpeg", "webp"}.contains(ext))
@@ -108,13 +154,19 @@ QString AppController::saveTeam(const QVariantMap &team)
 
 void AppController::deleteTeam(const QString &teamId) { setLoading(true); backend()->deleteTeam(teamId); }
 
-void AppController::setActiveTeam(const QString &teamId) { setActiveInternal(teamId); }
+void AppController::setActiveTeam(const QString &teamId)
+{
+    const bool changed = (teamId != m_activeTeamId);
+    setActiveInternal(teamId);
+    if (changed && m_authenticated)
+        backend()->setActiveTeam(teamId);
+}
 
 void AppController::setActiveInternal(const QString &id)
 {
     if (id == m_activeTeamId) return;
     m_activeTeamId = id;
-    QSettings().setValue("session/activeTeamId", id);   // lembra a escolha entre execuções
+    QSettings().setValue("session/activeTeamId", id);   // cache local entre execuções
     emit activeTeamChanging(id);
     emit activeTeamIdChanged();                         // RNF-L03: todas as áreas recarregam sem novo login
 }
@@ -125,8 +177,15 @@ void AppController::onResponse(IBackendService::Endpoint ep, const QVariantMap &
     using E = IBackendService::Endpoint;
     switch (ep) {
     case E::Login:
+    case E::Register:
+    case E::Me:
     case E::LinkAccount: {
+        if (m_restoringSession) {
+            m_restoringSession = false;
+            emit restoringSessionChanged();
+        }
         setLoading(false);
+        setError({});
         m_profile = p.value("profile").toMap();
         emit profileChanged();
         m_needsLink = p.value("needsLink").toBool();
@@ -144,13 +203,15 @@ void AppController::onResponse(IBackendService::Endpoint ep, const QVariantMap &
         setLoading(false);
         m_teams = p.value("teams").toList();
         emit teamsChanged();
-        // restaura time ativo salvo; senão usa o sugerido pelo backend; senão o primeiro
-        QString wanted = QSettings().value("session/activeTeamId").toString();
+        // Servidor é a fonte da verdade para o time ativo; QSettings funciona apenas como cache/fallback.
         auto exists = [&](const QString &id) {
-            for (const QVariant &t : m_teams) if (t.toMap().value("id").toString() == id) return true;
+            if (id.isEmpty()) return false;
+            for (const QVariant &t : m_teams)
+                if (t.toMap().value("id").toString() == id) return true;
             return false;
         };
-        if (!exists(wanted)) wanted = p.value("activeTeamId").toString();
+        QString wanted = p.value("activeTeamId").toString();
+        if (!exists(wanted)) wanted = QSettings().value("session/activeTeamId").toString();
         if (!exists(wanted) && !m_teams.isEmpty()) wanted = m_teams.first().toMap().value("id").toString();
         if (m_teams.isEmpty()) wanted.clear();
         if (wanted == m_activeTeamId) emit activeTeamIdChanged(); // time pode ter sido editado
@@ -159,6 +220,8 @@ void AppController::onResponse(IBackendService::Endpoint ep, const QVariantMap &
     }
     case E::SaveTeam:   emit toast(tr("Time salvo.")); refreshTeams(); break;
     case E::DeleteTeam: emit toast(tr("Time excluído.")); refreshTeams(); break;
+    case E::ActiveTeam: break;
+    case E::Logout:     break;
     case E::SyncHistory: emit toast(tr("Histórico sincronizado.")); break;
     default: break;
     }
@@ -167,9 +230,21 @@ void AppController::onResponse(IBackendService::Endpoint ep, const QVariantMap &
 void AppController::onFailure(IBackendService::Endpoint ep, const QString &message)
 {
     using E = IBackendService::Endpoint;
-    if (ep == E::Login || ep == E::LinkAccount || ep == E::Teams || ep == E::SaveTeam || ep == E::DeleteTeam) {
+    if (ep == E::Me && m_restoringSession) {
+        m_restoringSession = false;
+        emit restoringSessionChanged();
+        setLoading(false);
+        if (!message.isEmpty()) {
+            setError(message);
+            emit toast(message);
+        }
+        return;
+    }
+    if (ep == E::Login || ep == E::Register || ep == E::Me || ep == E::LinkAccount ||
+        ep == E::Teams || ep == E::SaveTeam || ep == E::DeleteTeam || ep == E::ActiveTeam) {
         setLoading(false);
         setError(message);
-        emit toast(message);
+        if (!message.isEmpty())
+            emit toast(message);
     }
 }

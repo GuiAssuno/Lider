@@ -25,10 +25,10 @@ cd /d [DIRETORIO_ONDE_ESTA_O_LAUNCHER_AQUI]
 dir CMakeLists.txt
  
 rmdir /s /q build
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=%QT_DIR%
+cmake -S frontend -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=%QT_DIR%
 cmake --build build
  
-%QT_DIR%\bin\windeployqt.exe --qmldir qml build\lider.exe
+%QT_DIR%\bin\windeployqt.exe --qmldir frontend\qml build\lider.exe
 build\lider.exe
 ```
 4. Compilar
@@ -38,8 +38,19 @@ cmake --build build
 ```
 Espere aparecer Linking CXX executable lider.exe (leva de 1 a 3 minutos). Depois rode:
 ```bash
-%QT_DIR%\bin\windeployqt.exe --qmldir qml build\lider.exe
+%QT_DIR%\bin\windeployqt.exe --qmldir frontend\qml build\lider.exe
 build\lider.exe
+```
+
+### Conectar à API real (Etapa 3)
+Por padrão (sem `LIDER_API_URL`), o launcher roda 100% em modo mock. Para ligar autenticação, perfil e times à API FastAPI (`backend/`), mantendo o restante no mock via `RoutedBackendService`:
+```bat
+set LIDER_API_URL=http://127.0.0.1:8000
+build\lider.exe
+```
+Ou pela linha de comando:
+```bat
+build\lider.exe --api-url http://127.0.0.1:8000
 ```
 
 ## Como testar

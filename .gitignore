@@ -1,3 +1,10 @@
 build/
 shots/
 *.user
+.vscode/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backend/.env
+backend/storage/

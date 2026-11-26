@@ -23,6 +23,7 @@ class AppController : public BaseController
     // Sessão
     Q_PROPERTY(bool authenticated READ authenticated NOTIFY authenticatedChanged)
     Q_PROPERTY(bool needsAccountLink READ needsAccountLink NOTIFY needsAccountLinkChanged)
+    Q_PROPERTY(bool restoringSession READ restoringSession NOTIFY restoringSessionChanged)
     Q_PROPERTY(QVariantMap profile READ profile NOTIFY profileChanged)
     // Navegação
     Q_PROPERTY(QString route READ route NOTIFY routeChanged)
@@ -39,6 +40,7 @@ public:
     QString version() const;
     bool authenticated() const { return m_authenticated; }
     bool needsAccountLink() const { return m_needsLink; }
+    bool restoringSession() const { return m_restoringSession; }
     QVariantMap profile() const { return m_profile; }
     QString route() const { return m_route; }
     QVariantList teams() const { return m_teams; }
@@ -48,7 +50,9 @@ public:
 
     // ---- Sessão ----
     Q_INVOKABLE void login(const QString &email, const QString &password);
+    Q_INVOKABLE void registerAccount(const QString &email, const QString &password);
     Q_INVOKABLE void loginWithRiot();
+    Q_INVOKABLE void restoreSession();
     Q_INVOKABLE void linkAccount(const QString &nick, const QString &tag, const QString &region);
     Q_INVOKABLE void logout();
     // ---- Navegação ----
@@ -66,6 +70,7 @@ public:
 signals:
     void authenticatedChanged();
     void needsAccountLinkChanged();
+    void restoringSessionChanged();
     void profileChanged();
     void routeChanged();
     void teamsChanged();
@@ -79,13 +84,16 @@ signals:
 private slots:
     void onResponse(IBackendService::Endpoint ep, const QVariantMap &payload);
     void onFailure(IBackendService::Endpoint ep, const QString &message);
+    void onSessionExpired(const QString &message);
 
 private:
     void setActiveInternal(const QString &id);
+    void clearSessionLocal();
 
     ILcuBridge *m_lcu;
     bool m_authenticated = false;
     bool m_needsLink = false;
+    bool m_restoringSession = false;
     QVariantMap m_profile;
     QString m_route = "analysis";
     QVariantList m_teams;
