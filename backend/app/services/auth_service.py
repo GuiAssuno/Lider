@@ -192,6 +192,11 @@ async def refresh_session(
     token_hash = hash_refresh_token(raw_refresh_token)
     now = datetime.now(timezone.utc)
 
+    revoked = False
+    user_id = 0
+    user_email = ""
+    new_refresh_token = ""
+
     async with db.transaction() as conn:
         row = await conn.fetchrow(
             """
@@ -210,6 +215,7 @@ async def refresh_session(
 
         # Token de uso unico: tentativa de reuso ou uso apos revogacao invalida
         # todas as sessoes ativas do usuario por seguranca.
+        # Nota: sai da transacao sem lancar excecao para confirmar o UPDATE de revogacao.
         if row["usado_em"] is not None or row["revogado_em"] is not None:
             await conn.execute(
                 """
@@ -219,25 +225,27 @@ async def refresh_session(
                 """,
                 user_id,
             )
-            raise AppError(401, _SESSION_EXPIRED_MSG)
-
-        if row["expira_em"] <= now:
+            revoked = True
+        elif row["expira_em"] <= now:
             await conn.execute(
                 "UPDATE refresh_tokens SET revogado_em = NOW() WHERE id = $1",
                 row["id"],
             )
-            raise AppError(401, _SESSION_EXPIRED_MSG)
+            revoked = True
+        else:
+            await conn.execute(
+                "UPDATE refresh_tokens SET usado_em = NOW() WHERE id = $1",
+                row["id"],
+            )
+            new_refresh_token = await _issue_refresh_token(
+                conn,
+                user_id=user_id,
+                refresh_days=settings.refresh_token_days,
+            )
+            user_email = row["email"]
 
-        await conn.execute(
-            "UPDATE refresh_tokens SET usado_em = NOW() WHERE id = $1",
-            row["id"],
-        )
-        new_refresh_token = await _issue_refresh_token(
-            conn,
-            user_id=user_id,
-            refresh_days=settings.refresh_token_days,
-        )
-        user_email = row["email"]
+    if revoked:
+        raise AppError(401, _SESSION_EXPIRED_MSG)
 
     access_token, expires_in = create_access_token(
         user_id=user_id,
